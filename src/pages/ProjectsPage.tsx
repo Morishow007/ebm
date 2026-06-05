@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { Helmet } from 'react-helmet-async'
 
+import { PageMeta } from '@/components/seo/PageMeta'
 import { Badge, Container, Section } from '@/components/ui'
 import { getProjects } from '@/lib/api'
 import { fadeIn, slideUp, staggerChildren } from '@/lib/motion'
-import { buildPageTitle } from '@/lib/seo'
+import { pageSEO } from '@/lib/seo'
 import type { Project, ProjectCategory } from '@/types/models'
 
 const categories: Array<ProjectCategory | 'Todos'> = [
@@ -36,13 +36,15 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{buildPageTitle('Projetos')}</title>
-        <meta name="description" content="Conheça os projetos estruturais desenvolvidos pela EBM Engenharia." />
-      </Helmet>
+      <PageMeta
+        title={pageSEO.projects.title}
+        description={pageSEO.projects.description}
+        keywords={[...pageSEO.projects.keywords]}
+        path="/projetos"
+      />
 
       {/* Page header */}
-      <section className="bg-slate-950 py-20">
+      <section className="bg-black py-20">
         <Container>
           <motion.div
             variants={shouldReduceMotion ? {} : fadeIn}
@@ -50,7 +52,7 @@ export default function ProjectsPage() {
             animate="visible"
           >
             <h1 className="font-heading text-4xl font-bold text-white">Projetos</h1>
-            <p className="mt-4 max-w-lg text-slate-400">
+            <p className="mt-4 max-w-lg text-zinc-400">
               Uma seleção de obras e projetos estruturais entregues com precisão técnica e dentro do prazo.
             </p>
           </motion.div>
@@ -67,8 +69,8 @@ export default function ProjectsPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`rounded px-4 py-1.5 text-sm font-medium transition-colors ${
                   activeCategory === cat
-                    ? 'bg-amber-400 text-slate-900'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    ? 'bg-amber-400 text-zinc-900'
+                    : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
                 }`}
               >
                 {cat}
@@ -78,7 +80,7 @@ export default function ProjectsPage() {
 
           {isLoading ? (
             <div className="flex justify-center py-20">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-slate-200 border-t-amber-400" />
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-200 border-t-amber-400" />
             </div>
           ) : (
             <motion.div
@@ -91,21 +93,21 @@ export default function ProjectsPage() {
                 <motion.article
                   key={project.id}
                   variants={shouldReduceMotion ? {} : slideUp}
-                  className="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                  className="group overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm transition-shadow hover:shadow-md"
                 >
-                  <div className="aspect-video bg-slate-100" />
+                  <div className="aspect-video bg-zinc-100" />
                   <div className="p-5">
                     <div className="flex items-center justify-between">
                       <Badge>{project.category}</Badge>
-                      <span className="text-xs text-slate-400">{project.year}</span>
+                      <span className="text-xs text-zinc-400">{project.year}</span>
                     </div>
-                    <h2 className="font-heading mt-3 text-lg font-semibold text-slate-900">
+                    <h2 className="font-heading mt-3 text-lg font-semibold text-zinc-900">
                       {project.title}
                     </h2>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-500 line-clamp-2">
+                    <p className="mt-2 text-sm leading-relaxed text-zinc-500 line-clamp-2">
                       {project.description}
                     </p>
-                    <p className="mt-3 text-xs text-slate-400">{project.location}</p>
+                    <p className="mt-3 text-xs text-zinc-400">{project.location}</p>
                   </div>
                 </motion.article>
               ))}

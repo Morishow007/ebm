@@ -1,22 +1,26 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Mail, MapPin, Phone } from 'lucide-react'
-import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import { PageMeta } from '@/components/seo/PageMeta'
 import { Button, Container, Section } from '@/components/ui'
 import { QuoteRequestSchema, projectTypeLabels, type QuoteRequest } from '@/features/contact'
 import { fadeIn, slideUp } from '@/lib/motion'
-import { buildPageTitle } from '@/lib/seo'
+import { pageSEO } from '@/lib/seo'
 
 const contactDetails = [
-  { icon: Phone, label: 'Telefone / WhatsApp', value: '(11) 99999-9999' },
+  {
+    icon: Phone,
+    label: 'Telefone / WhatsApp',
+    value: import.meta.env.VITE_CONTACT_PHONE || '+55 53 9708-1900',
+  },
   {
     icon: Mail,
     label: 'E-mail',
     value: import.meta.env.VITE_CONTACT_EMAIL || 'contato@ebmengenharia.com.br',
   },
-  { icon: MapPin, label: 'Atendimento', value: 'São Paulo e região — projetos em todo o Brasil' },
+  { icon: MapPin, label: 'Atendimento', value: 'Rio Grande, RS — projetos em todo o Brasil' },
 ]
 
 export default function ContactPage() {
@@ -40,12 +44,14 @@ export default function ContactPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{buildPageTitle('Contato')}</title>
-        <meta name="description" content="Entre em contato com a EBM Engenharia e solicite seu orçamento." />
-      </Helmet>
+      <PageMeta
+        title={pageSEO.contact.title}
+        description={pageSEO.contact.description}
+        keywords={[...pageSEO.contact.keywords]}
+        path="/contato"
+      />
 
-      <section className="bg-slate-950 py-20">
+      <section className="bg-black py-20">
         <Container>
           <motion.div
             variants={shouldReduceMotion ? {} : fadeIn}
@@ -53,7 +59,7 @@ export default function ContactPage() {
             animate="visible"
           >
             <h1 className="font-heading text-4xl font-bold text-white">Contato</h1>
-            <p className="mt-4 max-w-lg text-slate-400">
+            <p className="mt-4 max-w-lg text-zinc-400">
               Preencha o formulário e retornamos em até 1 dia útil com uma proposta personalizada.
             </p>
           </motion.div>
@@ -70,7 +76,7 @@ export default function ContactPage() {
               animate="visible"
               className="space-y-6"
             >
-              <h2 className="font-heading text-xl font-bold text-slate-900">
+              <h2 className="font-heading text-xl font-bold text-zinc-900">
                 Informações de contato
               </h2>
               {contactDetails.map(({ icon: Icon, label, value }) => (
@@ -79,10 +85,10 @@ export default function ContactPage() {
                     <Icon size={18} />
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                    <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">
                       {label}
                     </p>
-                    <p className="mt-0.5 text-sm text-slate-700">{value}</p>
+                    <p className="mt-0.5 text-sm text-zinc-700">{value}</p>
                   </div>
                 </div>
               ))}
@@ -196,7 +202,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-sm font-medium text-slate-700">{label}</label>
+      <label className="mb-1.5 block text-sm font-medium text-zinc-700">{label}</label>
       {children}
       {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
     </div>
@@ -204,9 +210,9 @@ function Field({
 }
 
 function inputClass(hasError: boolean) {
-  return `w-full rounded border px-3 py-2 text-sm text-slate-900 placeholder-slate-400 outline-none transition-colors focus:ring-2 focus:ring-amber-400/50 ${
+  return `w-full rounded border px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 outline-none transition-colors focus:ring-2 focus:ring-amber-400/50 ${
     hasError
       ? 'border-red-400 bg-red-50 focus:border-red-400'
-      : 'border-slate-300 bg-white focus:border-amber-400'
+      : 'border-zinc-300 bg-white focus:border-amber-400'
   }`
 }

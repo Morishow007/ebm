@@ -37,6 +37,31 @@
     max-width: 100%;
     height: auto;
   }
+
+  /* Seleção de texto */
+  ::selection {
+    background-color: #f59e0b;
+    color: #000;
+  }
+
+  /* Scrollbar sutil — seções escuras */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3f3f46;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #52525b;
+  }
 }
 
 @layer utilities {
@@ -47,4 +72,5 @@
   .text-balance {
     text-wrap: balance;
   }
+
 }

@@ -1,44 +1,42 @@
 @theme {
-  /* Cores primárias - azuis escuros */
-  --color-primary-950: #0f172a;
-  --color-primary-900: #1e293b;
-  --color-primary-800: #1e3a5f;
-  --color-primary-700: #1d4ed8;
+  /* Identidade visual: preto · cinza · branco · âmbar */
 
-  /* Accent - âmbar */
+  /* Fundos escuros */
+  --color-bg-darkest: #000000;
+  --color-bg-dark: #0a0a0a;
+  --color-bg-dark-secondary: #141414;
+  --color-bg-dark-tertiary: #1f1f1f;
+
+  /* Superfícies claras */
+  --color-surface-white: #ffffff;
+  --color-surface-50: #fafafa;
+  --color-surface-100: #f5f5f5;
+  --color-surface-200: #e5e5e5;
+  --color-surface-300: #d4d4d4;
+
+  /* Texto */
+  --color-text-primary: #0a0a0a;
+  --color-text-secondary: #525252;
+  --color-text-muted: #a1a1aa;
+  --color-text-inverse: #fafafa;
+  --color-text-inverse-muted: #a1a1aa;
+
+  /* Bordas */
+  --color-border-dark: #27272a;
+  --color-border-light: #e4e4e7;
+
+  /* Accent — âmbar (mantido) */
   --color-accent: #f59e0b;
   --color-accent-hover: #fbbf24;
   --color-accent-dark: #d97706;
-
-  /* Superfícies */
-  --color-surface-white: #ffffff;
-  --color-surface-50: #f8fafc;
-  --color-surface-100: #f1f5f9;
-  --color-surface-200: #e2e8f0;
-
-  /* Texto */
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #475569;
-  --color-text-muted: #94a3b8;
-  --color-text-inverse: #f8fafc;
+  --color-accent-bg: #fffbeb;
 
   /* Tipografia */
   --font-family-sans: 'Inter', system-ui, sans-serif;
   --font-family-heading: 'Outfit', system-ui, sans-serif;
 
-  /* Espaçamento - base 4px */
-  --spacing-1: 4px;
-  --spacing-2: 8px;
-  --spacing-3: 12px;
-  --spacing-4: 16px;
-  --spacing-5: 20px;
-  --spacing-6: 24px;
-  --spacing-8: 32px;
-  --spacing-10: 40px;
-  --spacing-12: 48px;
-  --spacing-16: 64px;
-  --spacing-20: 80px;
-  --spacing-24: 96px;
+  /* Espaçamento — base 4px */
+  --spacing-base: 4px;
 
   /* Border radius */
   --radius-sm: 4px;
@@ -46,7 +44,7 @@
   --radius-lg: 12px;
 
   /* Sombras */
-  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
   --shadow-elevated: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }

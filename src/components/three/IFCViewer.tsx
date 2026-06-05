@@ -16,7 +16,7 @@
 
 export function IFCViewer() {
   return (
-    <div className="flex h-full w-full items-center justify-center bg-slate-900 text-slate-400">
+    <div className="flex h-full w-full items-center justify-center bg-zinc-900 text-zinc-400">
       <p className="text-sm">Visualizador IFC — disponível na Fase 2</p>
     </div>
   )

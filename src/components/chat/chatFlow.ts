@@ -16,7 +16,7 @@ export interface ChatNode {
 }
 
 const CONTACT_EMAIL = 'contato@ebmengenharia.com.br'
-const WHATSAPP_URL = 'https://wa.me/5511999999999' // substituir pelo número real
+const WHATSAPP_URL = 'https://wa.me/5553997081900'
 
 // Opções de retorno reutilizáveis
 const backToStart: ChatOption = { label: '↩ Voltar ao início', next: 'start' }

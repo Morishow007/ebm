@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { MessageCircle, RotateCcw, X } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
+import logotipo from '@/assets/images/logotipo.png'
 import { cn } from '@/lib/utils'
 
 import { chatNodes, type ChatOption } from './chatFlow'
@@ -14,8 +15,7 @@ interface Message {
 }
 
 function parseMarkdown(text: string): string {
-  return text
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+  return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
 }
 
 export function ChatBot() {
@@ -28,18 +28,10 @@ export function ChatBot() {
 
   const currentNode = chatNodes[currentNodeId]
 
-  // Inicia a conversa com a saudação do primeiro nó
   useEffect(() => {
-    setMessages([
-      {
-        id: 'bot-0',
-        from: 'bot',
-        text: chatNodes['start'].message,
-      },
-    ])
+    setMessages([{ id: 'bot-0', from: 'bot', text: chatNodes['start'].message }])
   }, [])
 
-  // Auto-scroll ao receber nova mensagem
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
@@ -47,7 +39,6 @@ export function ChatBot() {
   function handleOption(option: ChatOption) {
     setHasNotification(false)
 
-    // Adiciona a escolha do usuário ao histórico
     const userMsg: Message = {
       id: `user-${Date.now()}`,
       from: 'user',
@@ -64,7 +55,6 @@ export function ChatBot() {
     setMessages((prev) => [...prev, userMsg, botMsg])
     setCurrentNodeId(option.next)
 
-    // Navegação interna ou link externo
     if (option.link) {
       if (option.external) {
         window.open(option.link, '_blank', 'noopener,noreferrer')
@@ -77,13 +67,7 @@ export function ChatBot() {
 
   function handleReset() {
     setCurrentNodeId('start')
-    setMessages([
-      {
-        id: 'bot-reset',
-        from: 'bot',
-        text: chatNodes['start'].message,
-      },
-    ])
+    setMessages([{ id: 'bot-reset', from: 'bot', text: chatNodes['start'].message }])
   }
 
   function handleOpen() {
@@ -98,68 +82,68 @@ export function ChatBot() {
         {isOpen && (
           <motion.div
             key="chat-window"
-            initial={{ opacity: 0, scale: 0.9, y: 16 }}
+            initial={{ opacity: 0, scale: 0.92, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 16 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-            className="flex w-[340px] flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xl sm:w-[380px]"
+            exit={{ opacity: 0, scale: 0.92, y: 16 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 30 }}
+            className="flex w-[340px] flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-2xl sm:w-[380px]"
             style={{ maxHeight: 'calc(100vh - 120px)' }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between bg-slate-950 px-4 py-3">
+            <div className="flex items-center justify-between bg-black px-4 py-3">
               <div className="flex items-center gap-3">
-                <div className="relative flex h-9 w-9 items-center justify-center rounded-full bg-amber-400 text-slate-900 font-heading font-bold text-sm select-none">
-                  EB
-                  <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-slate-950 bg-green-400" />
+                <div className="relative rounded bg-white px-1.5 py-0.5">
+                  <img src={logotipo} alt="EBM Engenharia" className="h-6 w-auto" />
+                  <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-black bg-green-400" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-white">EBM Engenharia</p>
-                  <p className="text-xs text-slate-400">Assistente virtual · Online</p>
+                  <p className="text-xs text-zinc-400">Assistente virtual · Online</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
                 <button
                   onClick={handleReset}
                   title="Reiniciar conversa"
-                  className="rounded p-1.5 text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+                  className="rounded p-1.5 text-zinc-500 transition-colors hover:bg-white/10 hover:text-white"
                   aria-label="Reiniciar conversa"
                 >
-                  <RotateCcw size={14} />
+                  <RotateCcw size={13} />
                 </button>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="rounded p-1.5 text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+                  className="rounded p-1.5 text-zinc-500 transition-colors hover:bg-white/10 hover:text-white"
                   aria-label="Fechar chat"
                 >
-                  <X size={16} />
+                  <X size={15} />
                 </button>
               </div>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto bg-slate-50 p-4 space-y-3" style={{ minHeight: 260, maxHeight: 380 }}>
+            <div
+              className="flex-1 space-y-3 overflow-y-auto bg-zinc-50 p-4"
+              style={{ minHeight: 260, maxHeight: 380 }}
+            >
               {messages.map((msg) => (
                 <motion.div
                   key={msg.id}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className={cn(
-                    'flex',
-                    msg.from === 'user' ? 'justify-end' : 'justify-start'
-                  )}
+                  transition={{ duration: 0.18 }}
+                  className={cn('flex', msg.from === 'user' ? 'justify-end' : 'justify-start')}
                 >
                   {msg.from === 'bot' && (
-                    <div className="mr-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-400 text-slate-900 font-bold text-xs select-none">
-                      EB
+                    <div className="mr-2 flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded bg-white border border-zinc-200 p-0.5">
+                      <img src={logotipo} alt="" className="h-full w-auto object-contain" />
                     </div>
                   )}
                   <div
                     className={cn(
                       'max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed',
                       msg.from === 'bot'
-                        ? 'rounded-tl-sm bg-white text-slate-800 shadow-sm'
-                        : 'rounded-tr-sm bg-slate-900 text-white'
+                        ? 'rounded-tl-sm bg-white text-zinc-800 shadow-sm ring-1 ring-zinc-100'
+                        : 'rounded-tr-sm bg-zinc-900 text-white'
                     )}
                     // eslint-disable-next-line react/no-danger
                     dangerouslySetInnerHTML={{ __html: parseMarkdown(msg.text) }}
@@ -170,16 +154,16 @@ export function ChatBot() {
             </div>
 
             {/* Options */}
-            <div className="border-t border-slate-100 bg-white p-3">
-              <p className="mb-2 px-1 text-[11px] font-medium uppercase tracking-wide text-slate-400">
+            <div className="border-t border-zinc-100 bg-white p-3">
+              <p className="mb-2 px-1 text-[10px] font-semibold uppercase tracking-widest text-zinc-400">
                 Escolha uma opção
               </p>
-              <div className="flex flex-col gap-1.5 max-h-[200px] overflow-y-auto pr-0.5">
+              <div className="flex max-h-[200px] flex-col gap-1.5 overflow-y-auto">
                 {currentNode?.options.map((opt) => (
                   <button
                     key={opt.next + opt.label}
                     onClick={() => handleOption(opt)}
-                    className="w-full rounded-lg border border-slate-200 px-3 py-2 text-left text-sm text-slate-700 transition-colors hover:border-amber-300 hover:bg-amber-50 hover:text-slate-900 active:bg-amber-100"
+                    className="w-full rounded-lg border border-zinc-100 px-3 py-2 text-left text-sm text-zinc-700 transition-colors hover:border-amber-300 hover:bg-amber-50 hover:text-zinc-900 active:bg-amber-100"
                   >
                     {opt.label}
                   </button>
@@ -193,9 +177,9 @@ export function ChatBot() {
       {/* ── Botão flutuante ────────────────────────────────────── */}
       <motion.button
         onClick={isOpen ? () => setIsOpen(false) : handleOpen}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-amber-400 text-slate-900 shadow-lg transition-colors hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2"
+        whileHover={{ scale: 1.06 }}
+        whileTap={{ scale: 0.94 }}
+        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-amber-400 text-black shadow-lg transition-colors hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2"
         aria-label={isOpen ? 'Fechar assistente' : 'Abrir assistente virtual'}
       >
         <AnimatePresence mode="wait">
@@ -222,7 +206,6 @@ export function ChatBot() {
           )}
         </AnimatePresence>
 
-        {/* Notificação */}
         {hasNotification && !isOpen && (
           <motion.span
             initial={{ scale: 0 }}

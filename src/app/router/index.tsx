@@ -17,6 +17,7 @@ function PageSkeleton() {
 // Lazy-loaded pages
 const HomePage = React.lazy(() => import('@/pages/HomePage'))
 const ProjectsPage = React.lazy(() => import('@/pages/ProjectsPage'))
+const ModelShowcasePage = React.lazy(() => import('@/pages/ModelShowcasePage'))
 const ServicesPage = React.lazy(() => import('@/pages/ServicesPage'))
 const ContactPage = React.lazy(() => import('@/pages/ContactPage'))
 const NotFoundPage = React.lazy(() => import('@/pages/NotFoundPage'))
@@ -36,6 +37,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: lazy(HomePage) },
       { path: 'projetos', element: lazy(ProjectsPage) },
+      { path: 'projetos/3d', element: lazy(ModelShowcasePage) },
       { path: 'servicos', element: lazy(ServicesPage) },
       { path: 'contato', element: lazy(ContactPage) },
       {

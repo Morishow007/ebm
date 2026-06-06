@@ -1,3 +1,4 @@
+import { Instagram, Mail, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import logotipo from '@/assets/images/logotipo.png'
@@ -16,13 +17,34 @@ const quickLinks = [
   { href: '/projetos', label: 'Projetos' },
   { href: '/servicos', label: 'Serviços' },
   { href: '/contato', label: 'Contato' },
-  { href: '/portal', label: 'Portal do Cliente' },
+]
+
+const contactLinks = [
+  {
+    icon: Phone,
+    label: '+55 53 9708-1900',
+    href: 'https://wa.me/5553997081900',
+    external: true,
+    highlight: true,
+  },
+  {
+    icon: Mail,
+    label: 'contato@ebmengenharia.com.br',
+    href: 'mailto:contato@ebmengenharia.com.br',
+    external: false,
+    highlight: false,
+  },
+  {
+    icon: Instagram,
+    label: '@eng.ebm',
+    href: 'https://www.instagram.com/eng.ebm',
+    external: true,
+    highlight: false,
+  },
 ]
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
-  const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || 'contato@ebmengenharia.com.br'
-  const contactPhone = import.meta.env.VITE_CONTACT_PHONE || '+55 53 9708-1900'
 
   return (
     <footer className="border-t border-white/8 bg-black text-zinc-400">
@@ -39,36 +61,33 @@ export function Footer() {
               Engenharia estrutural, regularização imobiliária e segurança do trabalho com
               responsabilidade técnica e comprometimento em cada projeto.
             </p>
-            <div className="mt-4 space-y-1.5">
-              <p className="text-sm">
-                <a
-                  href={`https://wa.me/5553997081900`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-amber-400 transition-colors hover:text-amber-300"
-                >
-                  {contactPhone}
-                </a>
-              </p>
-              <p className="text-sm">
-                <a
-                  href={`mailto:${contactEmail}`}
-                  className="text-zinc-500 transition-colors hover:text-zinc-300"
-                >
-                  {contactEmail}
-                </a>
-              </p>
-              <p className="text-sm">
-                <a
-                  href="https://www.instagram.com/eng.ebm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-zinc-500 transition-colors hover:text-zinc-300"
-                >
-                  @eng.ebm
-                </a>
-              </p>
-            </div>
+
+            <ul className="mt-5 space-y-3">
+              {contactLinks.map(({ icon: Icon, label, href, external, highlight }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className={`group flex items-center gap-2.5 text-sm transition-colors ${
+                      highlight
+                        ? 'text-amber-400 hover:text-amber-300'
+                        : 'text-zinc-500 hover:text-zinc-200'
+                    }`}
+                  >
+                    <span
+                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded border transition-colors ${
+                        highlight
+                          ? 'border-amber-400/30 bg-amber-400/10 text-amber-400 group-hover:bg-amber-400/20'
+                          : 'border-white/10 bg-white/5 text-zinc-400 group-hover:border-white/20 group-hover:text-zinc-200'
+                      }`}
+                    >
+                      <Icon size={14} />
+                    </span>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Services */}

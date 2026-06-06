@@ -1,80 +1,113 @@
-Feature 1 — Visualização 3D de modelos Revit
-O caminho do Revit até o browser é o nó do problema, não o rendering.
+# EBM Engenharia — Feature Log & Roadmap
 
-O que o Revit exporta de útil
-O formato nativo .rvt é proprietário e inútil para a web. As saídas viáveis são:
+---
 
-Formato	Via	Qualidade
-IFC	Export nativo	Geometria + metadata BIM completa
-FBX	Export nativo	Geometria + materiais, sem metadata BIM
-GLTF/GLB	Pipeline externo	Ideal para web, leve, suporte a PBR
-Duas abordagens com trade-offs bem diferentes
-A) GLTF via pipeline offline (showcase / WoW factor)
+## Estado atual (Junho 2026)
 
+### Implementado e funcional
 
-Revit → FBX → Blender → GLTF otimizado → hospedado como asset estático
-Eduardo exporta FBX do Revit, abre no Blender (gratuito), otimiza poly count, exporta GLB
-O ModelViewer.tsx que já está scaffoldado aceita isso nativamente via useGLTF
-Custo operacional: zero (asset estático no CDN)
-Limitação: é um modelo congelado — não é o BIM real, perde metadata
-Complexidade: baixa no lado código (já temos R3F + ModelViewer prontos), média no pipeline de asset preparation — Blender tem curva de aprendizado, mas Eduardo é engenheiro e vai absorver rápido
-B) IFC nativo no browser (viewer de BIM de verdade)
+| Feature | Estado | Notas |
+|---|---|---|
+| Site público PT-BR | ✅ | Home, Serviços, Projetos, Contato, 404 |
+| Identidade visual preta/zinc/âmbar | ✅ | Tailwind v4 tokens, sem azul |
+| SEO local Rio Grande RS | ✅ | JSON-LD, geo meta tags, sitemap, robots.txt |
+| Google Rating badge 4.8★ | ✅ | Hardcoded, comentário documenta path para Places API |
+| Navbar + Footer | ✅ | Logo, links, contatos com ícones (Phone/Mail/Instagram) |
+| Chatbot estático FAQ | ✅ | Tree-based, zero custo, flui para WhatsApp |
+| WhatsApp floating button | ✅ | Verde, some quando chat abre, +55 53 9708-1900 |
+| ScrollRestoration | ✅ | Qualquer navegação vai ao topo |
+| GA4 analytics | ✅ | Script injetado dinamicamente, trackPageView por rota |
+| Formulário de contato | ✅ | Zod validado, POST Web3Forms (precisar de VITE_WEB3FORMS_KEY) |
+| trackEvent quote_request | ✅ | Dispara no submit do formulário |
+| Visualização 3D — Sketchfab embed | ✅ | Rota /projetos/3d, ID via VITE_SKETCHFAB_MODEL_ID |
+| Página de projetos | ✅ | Cards com filtro por categoria, CTA card para 3D |
 
+### Variáveis de ambiente necessárias (.env.local)
 
-Revit → IFC → browser parseia com WASM → geometria + metadata acessível
-Duas libs:
+```
+VITE_WEB3FORMS_KEY=         # web3forms.com → formulário de contato ativo
+VITE_SKETCHFAB_MODEL_ID=    # ID do modelo público no Sketchfab
+VITE_GA_MEASUREMENT_ID=     # G-XXXXXXXXXX → analytics.google.com
+VITE_CONTACT_PHONE=+55 53 9708-1900
+VITE_CONTACT_EMAIL=contato@ebmengenharia.com.br
+```
 
-web-ifc + web-ifc-three (a que o IFCViewer.tsx referencia no stub)
-@thatopen/components — sucessor mais moderno, mantido pela comunidade Open BIM
-Isso dá element picking, propriedades BIM, filtros por disciplina. O WoW factor aqui é muito maior.
+---
 
-Porém: o .wasm do parser é ~4MB, precisa ser servido com header correto (application/wasm), e a performance em modelos grandes (>100MB IFC) é desafiadora mesmo com workers. Complexidade: alta — gerenciamento de memória, worker threads, otimização de LOD.
+## Decisões de arquitetura tomadas
 
-C) Speckle (meio-termo interessante)
+### 3D — Sketchfab em vez de R3F/Three.js
+**Decisão:** Remover @react-three/fiber, @react-three/drei, three, r3f-perf do projeto.
+**Razão:** Modelos de projetos reais de engenharia são pesados (50–200MB). O pipeline Revit → GLB otimizado tem fricção alta. Sketchfab resolve tudo: compressão, CDN, streaming progressivo, mobile — via iframe.
+**Trade-off aceite:** Logo do Sketchfab visível no embed (free tier). Removível com plano Pro se necessário.
+**Como funciona:** `VITE_SKETCHFAB_MODEL_ID` aponta para qualquer modelo público. Trocar o ID = trocar o modelo, sem redeploy.
 
-Speckle tem plugin oficial para Revit. Eduardo instala, empurra o modelo para o Speckle cloud (free tier), e você embute o @speckle/viewer no site. O viewer deles é excelente e já lida com tudo que a opção B faz manualmente.
+### Projetos com 3D opcional (decisão de design, não implementada)
+Quando o CMS for implementado, o campo `sketchfabId?: string` no modelo `Project` permite que alguns projetos tenham badge "Ver em 3D" e outros não. O Eduardo cola o ID no Sanity Studio sem tocar em código.
 
-Free tier: projetos ilimitados, modelos públicos/privados
-Complexidade de integração: baixa-média (é basicamente uma iframe glorificada ou o SDK deles)
-Trade-off: dependência de infra de terceiro; se o Speckle sair do ar, o viewer some
-Recomendação para a EBM
-Curto prazo: opção A com GLTF. O código já existe, o impacto visual já justifica, e Eduardo aprende Blender em um final de semana. Coloca um modelo estrutural rotacionando na hero da página de projetos — isso já é o WoW factor.
+### CMS — Sanity (decidido, não implementado)
+**Razão:** Free tier suficiente (500k calls/mês, 10GB assets), Studio UI excelente para uso não-técnico, SDK TypeScript-first. A migração de `src/lib/api.ts` (mock → Sanity) é cirúrgica — a interface pública `getProjects()` / `getServices()` não muda.
+**Quando fazer:** Após o portfólio ter conteúdo real validado. Fazer antes é over-engineering.
 
-Médio prazo (portal do cliente, Phase 2): Speckle. Eduardo empurra modelos por projeto, o cliente acessa pelo portal com element picking e metadata real. Muito mais valor agregado que um GLTF estático.
+---
 
-Feature 2 — CMS gratuito sem redeploy
-O ponto crítico: como o projeto é uma SPA com fetch em runtime (src/lib/api.ts já está estruturado assim), qualquer CMS baseado em API resolve o problema sem redeploy. O conteúdo muda no CMS, próxima visita ao site já pega o conteúdo novo.
+## O que falta para impacto comercial imediato
 
-CMSs git-based (Decap, TinaCMS) descartamos — eles commitam no repositório, triggeram o CI/CD, é um redeploy com mais passos.
+### Prioridade alta — bloqueantes de lead
 
-Candidatos API-based gratuitos
-Sanity
+#### 1. Formulário de contato ativo
+**O que falta:** Criar conta em [web3forms.com](https://web3forms.com), gerar chave para `contato@ebmengenharia.com.br`, adicionar ao `.env.local`.
+**Impacto:** O formulário hoje valida mas não envia nada. Eduardo não recebe leads.
+**Esforço:** 10 minutos.
 
-Free tier: projetos ilimitados, 3 usuários, 500k API calls/mês, 10GB assets — mais do que suficiente
-SDK TypeScript-first (@sanity/client), tipagem sólida, GROQ para queries
-O Sanity Studio (admin UI) é o melhor da categoria — Eduardo vai conseguir usar sem treinamento
-Já temos VITE_CMS_API_URL e a estrutura de getProjects() / getServices() esperando apenas trocar o mock por um fetch real
-Custo de implementação: migrar o schema para o Sanity Studio + atualizar api.ts → médio
-Contentful
+#### 2. Analytics GA4 ativo
+**O que falta:** Criar property em [analytics.google.com](https://analytics.google.com), copiar o `G-XXXXXXXXXX` para `VITE_GA_MEASUREMENT_ID`.
+**Impacto:** Sem isso Eduardo opera cego — não sabe quais serviços atraem mais, onde os visitantes saem, quantos chegam à página de contato.
+**Esforço:** 15 minutos.
 
-Free tier: 25k records, 2 API keys, 1 locale — pode apertar se o portfólio crescer muito
-UI mais tradicional (tabela/formulário), Eduardo pode preferir ou não
-Complexidade similar ao Sanity
-Payload CMS — descarta por ora, precisa de Node server próprio.
+#### 3. Sketchfab — modelo real do Eduardo
+**O que falta:** Eduardo exporta um projeto do Revit (IFC ou FBX), faz upload no Sketchfab, cola o ID no `.env.local`.
+**Impacto:** O modelo de demo atual (casa indiana de terceiro) não representa a EBM. Um modelo real de projeto entregue é o WoW factor que diferencia.
+**Esforço:** 1–2h (export + upload + configuração do viewer no Sketchfab).
 
-Directus self-hosted — só faz sentido se já tiver infra (VPS).
+---
 
-Recomendação
-Sanity. Razões objetivas:
+### Prioridade média — credibilidade
 
-O free tier não vai estrangular em escala realista de portfólio de engenharia
-O Studio é a melhor UX de edição do mercado — Eduardo edita projetos e serviços sem fricção
-A migração do api.ts atual (mock → Sanity) é cirúrgica porque a interface pública (getProjects(), getServices()) não muda — apenas a implementação interna
-TypeScript schema nativo = os tipos de models.ts que já temos viram o schema do Sanity sem duplicação
-Resumo de complexidade:
+#### 4. Portfólio com fotos e dados reais
+**O que falta:** Eduardo fornece fotos e descrições de projetos reais. Substituir mock data em `src/lib/api.ts`.
+**Impacto:** Cards com placeholder cinza destroem credibilidade. É a segunda coisa que um visitante qualificado olha depois da home.
+**Esforço:** 2–4h de código + tempo do Eduardo para reunir conteúdo.
 
-Feature	Complexidade	Bloqueio principal
-GLTF showcase (opção A)	Baixa	Pipeline de asset (Blender)
-IFC nativo (opção B)	Alta	WASM perf + memory management
-Speckle viewer	Baixa-média	Setup do plugin Revit
-Sanity CMS	Média	Schema migration + Studio setup
+#### 5. Depoimentos / avaliações
+**O que falta:** Selecionar 3–4 avaliações do Google (já tem 33 com nota 4.8) e colocar numa seção estática na HomePage.
+**Impacto:** O badge de 4.8★ gera curiosidade — mas não tem prova social textual na página. Depoimentos convertem.
+**Esforço:** 3–4h.
+
+---
+
+### Prioridade baixa — infraestrutura futura
+
+#### 6. Sanity CMS
+**Quando:** Após portfólio ter conteúdo real. Permite Eduardo editar projetos, serviços e depoimentos sem redeploy ou desenvolvedor.
+**Esforço:** ~1 semana.
+
+#### 7. Sketchfab por projeto (projetos com 3D opcional)
+**Depende de:** CMS implementado (item 6) + Eduardo com modelos no Sketchfab.
+**Como:** Campo `sketchfabId?: string` no schema do projeto. Cards com esse campo exibem badge "Ver em 3D".
+
+#### 8. Portal do cliente (Phase 2)
+**Quando:** Produto separado. Requer Supabase, auth, file storage, UI completa.
+**Não iniciar** até os itens 1–5 estarem resolvidos.
+
+---
+
+## Guia Sketchfab — pipeline do Eduardo
+
+1. `File → Export → IFC` (IFC 2x3) ou `File → Export → FBX` no Revit
+2. Upload em [sketchfab.com](https://sketchfab.com) (conta gratuita, limite 200MB)
+3. Aguardar conversão (2–10 min)
+4. `Model Settings → Allow downloads: off`
+5. Copiar o ID da URL: `sketchfab.com/3d-models/nome-`**`{ID}`**
+6. Colar em `.env.local`: `VITE_SKETCHFAB_MODEL_ID={ID}`
+7. Em produção: adicionar a mesma variável no painel da Vercel/Netlify → redeploy

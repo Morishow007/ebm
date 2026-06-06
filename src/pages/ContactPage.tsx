@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { PageMeta } from '@/components/seo/PageMeta'
 import { Button, Container, Section } from '@/components/ui'
 import { QuoteRequestSchema, projectTypeLabels, type QuoteRequest } from '@/features/contact'
+import { trackEvent } from '@/lib/analytics'
 import { fadeIn, slideUp } from '@/lib/motion'
 import { pageSEO } from '@/lib/seo'
 
@@ -36,9 +37,20 @@ export default function ContactPage() {
   })
 
   async function onSubmit(data: QuoteRequest) {
-    // TODO: integrate with backend / email service
-    console.log('Quote request:', data)
-    await new Promise((r) => setTimeout(r, 800))
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+        subject: `Solicitação de orçamento — ${data.projectType}`,
+        from_name: data.name,
+        ...data,
+      }),
+    })
+
+    if (!res.ok) throw new Error('Falha no envio')
+
+    trackEvent('quote_request', { project_type: data.projectType })
     reset()
   }
 

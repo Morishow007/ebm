@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
+import { Box, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 import { PageMeta } from '@/components/seo/PageMeta'
 import { Badge, Container, Section } from '@/components/ui'
@@ -61,6 +63,38 @@ export default function ProjectsPage() {
 
       <Section>
         <Container>
+          {/* 3D showcase CTA */}
+          <motion.div
+            variants={shouldReduceMotion ? {} : fadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <Link
+              to="/projetos/3d"
+              className="group flex items-center justify-between gap-4 rounded-xl border border-zinc-200 bg-zinc-50 px-6 py-5 transition-all hover:border-amber-200 hover:bg-amber-50"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-zinc-900 text-amber-400">
+                  <Box size={22} />
+                </div>
+                <div>
+                  <p className="font-heading font-semibold text-zinc-900">
+                    Visualização 3D interativa
+                  </p>
+                  <p className="mt-0.5 text-sm text-zinc-500">
+                    Explore modelos BIM exportados do Revit em tempo real no navegador
+                  </p>
+                </div>
+              </div>
+              <ArrowRight
+                size={18}
+                className="shrink-0 text-zinc-400 transition-transform group-hover:translate-x-1 group-hover:text-amber-500"
+              />
+            </Link>
+          </motion.div>
+
           {/* Category filter */}
           <div className="mb-10 flex flex-wrap gap-2">
             {categories.map((cat) => (

@@ -12,6 +12,7 @@ import {
 import { Link } from 'react-router-dom'
 
 import capaceteEbm from '@/assets/images/capacete-ebm.png'
+import profileDudu from '@/assets/images/profile_dudu.png'
 import { GoogleRating } from '@/components/seo/GoogleRating'
 import { PageMeta } from '@/components/seo/PageMeta'
 import { Badge, Card, CardContent, Container, Section } from '@/components/ui'
@@ -27,9 +28,9 @@ interface InViewProps {
 
 const stats = [
   { value: '+80', label: 'Projetos entregues' },
-  { value: '10+', label: 'Anos de experiência' },
-  { value: '100%', label: 'ART garantida' },
-  { value: 'B2', label: 'Inglês — TOEFL ITP' },
+  { value: '8+', label: 'Anos de experiência' },
+  { value: '+5000 m²', label: 'Regularizados' },
+  { value: '+100', label: 'Laudos emitidos' },
 ]
 
 const highlights = [
@@ -58,9 +59,9 @@ const highlights = [
 ]
 
 const credentials = [
-  'Engenheiro Civil — CREA',
+  'Engenheiro Civil — CREA RS-242316',
   'Pós-graduado em Engenharia de Segurança do Trabalho',
-  'Especialização em Direito Imobiliário — FGV (conclusão 06/2026)',
+  'Especialização em Direito Imobiliário — FGV',
   'Formação técnica em Desenvolvimento de Software e Instrumentação Industrial',
   'Inglês B2 certificado — TOEFL ITP',
   'Responsável técnico de empresas da construção civil',
@@ -178,8 +179,8 @@ export default function HomePage() {
               O que fazemos
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-zinc-500">
-              Soluções completas de engenharia civil para cada fase do seu empreendimento —
-              do cálculo estrutural à regularização junto aos órgãos competentes.
+              Soluções completas de engenharia civil para cada fase do seu empreendimento.
+              Consultoria em segurança do trabalho.
             </p>
           </motion.div>
 
@@ -223,18 +224,31 @@ export default function HomePage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             {/* Texto */}
             <motion.div {...inView(slideUp)}>
-              <Badge className="mb-4 bg-zinc-200 text-zinc-700">Responsável Técnico</Badge>
-              <h2 className="font-heading text-3xl font-bold text-zinc-900 sm:text-4xl">
-                Eduardo Brignol Moreira
-              </h2>
-              <p className="mt-1 text-sm font-medium text-amber-600">
-                Engenheiro Civil · CREA
-              </p>
+              {/* Profile — estilo Instagram */}
+              <div className="mb-8 flex items-center gap-6">
+                <div className="relative shrink-0">
+                  <div className="h-32 w-32 rounded-full bg-gradient-to-tr from-amber-400 to-amber-200 p-[3px]">
+                    <img
+                      src={profileDudu}
+                      alt="Eduardo Brignol Moreira"
+                      className="h-full w-full rounded-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Badge className="mb-2 bg-zinc-200 text-zinc-700">Responsável Técnico</Badge>
+                  <h2 className="font-heading text-2xl font-bold text-zinc-900 sm:text-3xl">
+                    Eduardo Brignol Moreira
+                  </h2>
+                  <p className="mt-1 text-sm font-medium text-amber-600">
+                    Engenheiro Civil · CREA RS-242316
+                  </p>
+                </div>
+              </div>
               <p className="mt-5 leading-relaxed text-zinc-600">
                 Engenheiro civil com pós-graduação em Engenharia de Segurança do Trabalho e
                 especialização em Direito Imobiliário pela{' '}
-                <strong className="text-zinc-900">Fundação Getulio Vargas</strong> (conclusão
-                prevista em 06/2026). Com formação técnica em Desenvolvimento de Software e
+                <strong className="text-zinc-900">Fundação Getulio Vargas</strong>. Com formação técnica em Desenvolvimento de Software e
                 Instrumentação Industrial, une o rigor da engenharia à visão tecnológica para
                 entregar projetos mais eficientes.
               </p>
@@ -259,15 +273,15 @@ export default function HomePage() {
                     Formação e Credenciais
                   </h3>
                 </div>
-                <ul className="space-y-3">
+                <ul className="divide-y divide-zinc-100">
                   {credentials.map((cred) => (
                     <motion.li
                       key={cred}
                       variants={shouldReduceMotion ? {} : slideUp}
-                      className="flex items-start gap-3"
+                      className="flex items-center gap-3 py-2.5"
                     >
-                      <CheckCircle size={15} className="mt-0.5 shrink-0 text-amber-500" aria-hidden />
-                      <span className="text-sm text-zinc-700">{cred}</span>
+                      <CheckCircle size={14} className="shrink-0 text-amber-500" aria-hidden />
+                      <span className="text-sm leading-snug text-zinc-700">{cred}</span>
                     </motion.li>
                   ))}
                 </ul>
@@ -318,7 +332,6 @@ export default function HomePage() {
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-zinc-400">
             Entre em contato e receba uma proposta personalizada sem compromisso.
-            Atendimento em todo o Brasil.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link

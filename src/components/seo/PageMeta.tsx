@@ -23,9 +23,9 @@ export function PageMeta({ title, description, keywords = [], path = '/', noInde
 
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
 
-      {/* Geo — local SEO */}
+      {/* Geo — local SEO (coordenadas do endereço físico; region cobre RS inteiro) */}
       <meta name="geo.region" content={`${BUSINESS.country}-${BUSINESS.state}`} />
-      <meta name="geo.placename" content={`${BUSINESS.city}, ${BUSINESS.stateFullName}`} />
+      <meta name="geo.placename" content={`${BUSINESS.region}, ${BUSINESS.stateFullName}`} />
       <meta name="geo.position" content={`${BUSINESS.lat};${BUSINESS.lng}`} />
       <meta name="ICBM" content={`${BUSINESS.lat}, ${BUSINESS.lng}`} />
       <meta name="language" content="Portuguese" />

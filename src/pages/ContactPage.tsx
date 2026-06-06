@@ -19,9 +19,9 @@ const contactDetails = [
   {
     icon: Mail,
     label: 'E-mail',
-    value: import.meta.env.VITE_CONTACT_EMAIL || 'contato@ebmengenharia.com.br',
+    value: import.meta.env.VITE_CONTACT_EMAIL || 'contato@ebmengenharia.com',
   },
-  { icon: MapPin, label: 'Atendimento', value: 'Rio Grande, RS — projetos em todo o Brasil' },
+  { icon: MapPin, label: 'Atendimento', value: 'Rio Grande, Pelotas e sul do RS — projetos em todo o Brasil' },
 ]
 
 export default function ContactPage() {
@@ -72,7 +72,7 @@ export default function ContactPage() {
           >
             <h1 className="font-heading text-4xl font-bold text-white">Contato</h1>
             <p className="mt-4 max-w-lg text-zinc-400">
-              Preencha o formulário e retornamos em até 1 dia útil com uma proposta personalizada.
+              Preencha o formulário e retornamos uma proposta personalizada.
             </p>
           </motion.div>
         </Container>

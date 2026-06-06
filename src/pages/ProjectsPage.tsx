@@ -55,7 +55,7 @@ export default function ProjectsPage() {
           >
             <h1 className="font-heading text-4xl font-bold text-white">Projetos</h1>
             <p className="mt-4 max-w-lg text-zinc-400">
-              Uma seleção de obras e projetos estruturais entregues com precisão técnica e dentro do prazo.
+              Uma seleção de obras e projetos entregues com precisão técnica e dentro do prazo.
             </p>
           </motion.div>
         </Container>

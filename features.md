@@ -29,7 +29,7 @@ VITE_WEB3FORMS_KEY=         # web3forms.com → formulário de contato ativo
 VITE_SKETCHFAB_MODEL_ID=    # ID do modelo público no Sketchfab
 VITE_GA_MEASUREMENT_ID=     # G-XXXXXXXXXX → analytics.google.com
 VITE_CONTACT_PHONE=+55 53 9708-1900
-VITE_CONTACT_EMAIL=contato@ebmengenharia.com.br
+VITE_CONTACT_EMAIL=contato@ebmengenharia.com
 ```
 
 ---
@@ -56,7 +56,7 @@ Quando o CMS for implementado, o campo `sketchfabId?: string` no modelo `Project
 ### Prioridade alta — bloqueantes de lead
 
 #### 1. Formulário de contato ativo
-**O que falta:** Criar conta em [web3forms.com](https://web3forms.com), gerar chave para `contato@ebmengenharia.com.br`, adicionar ao `.env.local`.
+**O que falta:** Criar conta em [web3forms.com](https://web3forms.com), gerar chave para `contato@ebmengenharia.com`, adicionar ao `.env.local`.
 **Impacto:** O formulário hoje valida mas não envia nada. Eduardo não recebe leads.
 **Esforço:** 10 minutos.
 

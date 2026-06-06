@@ -21,9 +21,7 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link to="/" aria-label="EBM Engenharia — início" className="flex items-center">
-          <span className="rounded bg-white px-2 py-1">
-            <img src={logotipo} alt="EBM Engenharia" className="h-7 w-auto" />
-          </span>
+          <img src={logotipo} alt="EBM Engenharia" className="h-7 w-auto brightness-0 invert" />
         </Link>
 
         {/* Desktop nav */}

@@ -15,7 +15,7 @@ export interface ChatNode {
   options: ChatOption[]
 }
 
-const CONTACT_EMAIL = 'contato@ebmengenharia.com.br'
+const CONTACT_EMAIL = 'contato@ebmengenharia.com'
 const WHATSAPP_URL = 'https://wa.me/5553997081900'
 
 // Opções de retorno reutilizáveis

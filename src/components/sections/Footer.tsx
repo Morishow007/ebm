@@ -1,6 +1,8 @@
 import { Mail, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
+import { BUSINESS } from '@/lib/seo'
+
 function InstagramIcon({ size = 14 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -145,7 +147,7 @@ export function Footer() {
 
         <div className="mt-12 border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-zinc-700">
           <p>© {currentYear} EBM Engenharia. Todos os direitos reservados.</p>
-          <p>Engenheiro Eduardo Brignol Moreira · CREA RS-242316</p>
+          <p>Engenheiro Eduardo Brignol Moreira · CREA RS-242316 · CNPJ {BUSINESS.cnpj}</p>
         </div>
       </Container>
     </footer>

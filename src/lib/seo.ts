@@ -13,6 +13,7 @@ export interface SEOConfig {
 export const BUSINESS = {
   name: 'EBM Engenharia',
   legalName: 'EBM Engenharia',
+  cnpj: '59.207.672/0001-15',
   founder: 'Eduardo Brignol Moreira',
   founderTitle: 'Engenheiro Civil',
   email: import.meta.env.VITE_CONTACT_EMAIL || 'contato@ebmengenharia.com',
@@ -148,6 +149,7 @@ export function buildLocalBusinessSchema() {
     '@id': `${SITE_URL}/#business`,
     name: BUSINESS.name,
     legalName: BUSINESS.legalName,
+    taxID: BUSINESS.cnpj,
     description: pageSEO.home.description,
     url: SITE_URL,
     email: BUSINESS.email,

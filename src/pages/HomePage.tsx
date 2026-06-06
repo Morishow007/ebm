@@ -316,6 +316,22 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* ── Avaliações Google ─────────────────────────────────── */}
+      <section className="bg-white py-20">
+        <Container>
+          <motion.div {...inView(fadeIn)} className="mb-10 text-center">
+            <h2 className="font-heading text-3xl font-bold text-zinc-900 sm:text-4xl">
+              O que dizem os clientes
+            </h2>
+          
+          </motion.div>
+          <div
+            className="elfsight-app-17f592bd-d782-42a4-8175-29f73935f8f1"
+            data-elfsight-app-lazy
+          />
+        </Container>
+      </section>
+
       {/* ── CTA final ─────────────────────────────────────────── */}
       <motion.section
         variants={shouldReduceMotion ? {} : pageTransition}

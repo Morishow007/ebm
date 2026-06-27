@@ -102,11 +102,11 @@ export function ChatBot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 16 }}
             transition={{ type: 'spring', stiffness: 320, damping: 30 }}
-            className="flex w-[340px] flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-2xl sm:w-[380px]"
+            className="flex w-[340px] flex-col overflow-hidden rounded-xl border border-charcoal-200 bg-white shadow-2xl sm:w-[380px]"
             style={{ maxHeight: 'calc(100vh - 120px)' }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between bg-black px-4 py-3">
+            <div className="flex items-center justify-between bg-charcoal-900 px-4 py-3">
               <div className="flex items-center gap-3">
                 <div className="relative rounded bg-white px-1.5 py-0.5">
                   <img src={logotipo} alt="EBM Engenharia" className="h-6 w-auto" />
@@ -114,21 +114,21 @@ export function ChatBot() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-white">EBM Engenharia</p>
-                  <p className="text-xs text-zinc-400">Assistente virtual · Online</p>
+                  <p className="text-xs text-charcoal-400">Assistente virtual · Online</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
                 <button
                   onClick={handleReset}
                   title="Reiniciar conversa"
-                  className="rounded p-1.5 text-zinc-500 transition-colors hover:bg-white/10 hover:text-white"
+                  className="rounded p-1.5 text-charcoal-500 transition-colors hover:bg-white/10 hover:text-white"
                   aria-label="Reiniciar conversa"
                 >
                   <RotateCcw size={13} />
                 </button>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="rounded p-1.5 text-zinc-500 transition-colors hover:bg-white/10 hover:text-white"
+                  className="rounded p-1.5 text-charcoal-500 transition-colors hover:bg-white/10 hover:text-white"
                   aria-label="Fechar chat"
                 >
                   <X size={15} />
@@ -138,7 +138,7 @@ export function ChatBot() {
 
             {/* Messages */}
             <div
-              className="flex-1 space-y-3 overflow-y-auto bg-zinc-50 p-4"
+              className="flex-1 space-y-3 overflow-y-auto bg-charcoal-50 p-4"
               style={{ minHeight: 260, maxHeight: 380 }}
             >
               {messages.map((msg) => (
@@ -150,7 +150,7 @@ export function ChatBot() {
                   className={cn('flex', msg.from === 'user' ? 'justify-end' : 'justify-start')}
                 >
                   {msg.from === 'bot' && (
-                    <div className="mr-2 flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded bg-white border border-zinc-200 p-0.5">
+                    <div className="mr-2 flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded bg-white border border-charcoal-200 p-0.5">
                       <img src={logotipo} alt="" className="h-full w-auto object-contain" />
                     </div>
                   )}
@@ -158,8 +158,8 @@ export function ChatBot() {
                     className={cn(
                       'max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed',
                       msg.from === 'bot'
-                        ? 'rounded-tl-sm bg-white text-zinc-800 shadow-sm ring-1 ring-zinc-100'
-                        : 'rounded-tr-sm bg-zinc-900 text-white'
+                        ? 'rounded-tl-sm bg-white text-charcoal-800 shadow-sm ring-1 ring-charcoal-100'
+                        : 'rounded-tr-sm bg-charcoal-800 text-white'
                     )}
                     // eslint-disable-next-line react/no-danger
                     dangerouslySetInnerHTML={{ __html: parseMarkdown(msg.text) }}
@@ -170,8 +170,8 @@ export function ChatBot() {
             </div>
 
             {/* Options */}
-            <div className="border-t border-zinc-100 bg-white p-3">
-              <p className="mb-2 px-1 text-[10px] font-semibold uppercase tracking-widest text-zinc-400">
+            <div className="border-t border-charcoal-100 bg-white p-3">
+              <p className="mb-2 px-1 text-[10px] font-semibold uppercase tracking-widest text-charcoal-400">
                 Escolha uma opção
               </p>
               <div className="flex max-h-[200px] flex-col gap-1.5 overflow-y-auto">
@@ -179,7 +179,7 @@ export function ChatBot() {
                   <button
                     key={opt.next + opt.label}
                     onClick={() => handleOption(opt)}
-                    className="w-full rounded-lg border border-zinc-100 px-3 py-2 text-left text-sm text-zinc-700 transition-colors hover:border-amber-300 hover:bg-amber-50 hover:text-zinc-900 active:bg-amber-100"
+                    className="w-full rounded-lg border border-charcoal-100 px-3 py-2 text-left text-sm text-charcoal-700 transition-colors hover:border-orange-300 hover:bg-orange-50 hover:text-charcoal-900 active:bg-orange-100"
                   >
                     {opt.label}
                   </button>
@@ -217,7 +217,7 @@ export function ChatBot() {
         onClick={isOpen ? () => setIsOpen(false) : handleOpen}
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.94 }}
-        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-amber-400 text-black shadow-lg transition-colors hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2"
+        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-orange-400 text-black shadow-lg transition-colors hover:bg-orange-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2"
         aria-label={isOpen ? 'Fechar assistente' : 'Abrir assistente virtual'}
       >
         <AnimatePresence mode="wait">

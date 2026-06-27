@@ -24,17 +24,17 @@ export default function NotFoundPage() {
           animate="visible"
           className="max-w-md"
         >
-          <p className="font-heading text-8xl font-bold text-amber-400">404</p>
-          <h1 className="font-heading mt-4 text-2xl font-bold text-zinc-900">
+          <p className="font-heading text-8xl font-bold text-orange-400">404</p>
+          <h1 className="font-heading mt-4 text-2xl font-bold text-charcoal-900">
             Página não encontrada
           </h1>
-          <p className="mt-3 text-zinc-500">
+          <p className="mt-3 text-charcoal-500">
             O endereço que você acessou não existe ou foi removido.
           </p>
           <div className="mt-8">
             <Link
               to="/"
-              className="inline-flex h-10 items-center gap-2 rounded bg-amber-400 px-5 text-sm font-semibold text-zinc-900 transition-colors hover:bg-amber-300"
+              className="inline-flex h-10 items-center gap-2 rounded bg-orange-400 px-5 text-sm font-semibold text-charcoal-900 transition-colors hover:bg-orange-300"
             >
               <ArrowLeft size={16} />
               Voltar ao início

@@ -46,7 +46,7 @@ export default function ProjectsPage() {
       />
 
       {/* Page header */}
-      <section className="bg-black py-20">
+      <section className="bg-charcoal-900 py-20">
         <Container>
           <motion.div
             variants={shouldReduceMotion ? {} : fadeIn}
@@ -54,7 +54,7 @@ export default function ProjectsPage() {
             animate="visible"
           >
             <h1 className="font-heading text-4xl font-bold text-white">Projetos</h1>
-            <p className="mt-4 max-w-lg text-zinc-400">
+            <p className="mt-4 max-w-lg text-charcoal-400">
               Uma seleção de obras e projetos entregues com precisão técnica e dentro do prazo.
             </p>
           </motion.div>
@@ -73,24 +73,24 @@ export default function ProjectsPage() {
           >
             <Link
               to="/projetos/3d"
-              className="group flex items-center justify-between gap-4 rounded-xl border border-zinc-200 bg-zinc-50 px-6 py-5 transition-all hover:border-amber-200 hover:bg-amber-50"
+              className="group flex items-center justify-between gap-4 rounded-xl border border-charcoal-200 bg-charcoal-50 px-6 py-5 transition-all hover:border-orange-200 hover:bg-orange-50"
             >
               <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-zinc-900 text-amber-400">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-charcoal-800 text-orange-400">
                   <Box size={22} />
                 </div>
                 <div>
-                  <p className="font-heading font-semibold text-zinc-900">
+                  <p className="font-heading font-semibold text-charcoal-900">
                     Visualização 3D interativa
                   </p>
-                  <p className="mt-0.5 text-sm text-zinc-500">
+                  <p className="mt-0.5 text-sm text-charcoal-500">
                     Explore modelos BIM exportados do Revit em tempo real no navegador
                   </p>
                 </div>
               </div>
               <ArrowRight
                 size={18}
-                className="shrink-0 text-zinc-400 transition-transform group-hover:translate-x-1 group-hover:text-amber-500"
+                className="shrink-0 text-charcoal-400 transition-transform group-hover:translate-x-1 group-hover:text-orange-500"
               />
             </Link>
           </motion.div>
@@ -103,8 +103,8 @@ export default function ProjectsPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`rounded px-4 py-1.5 text-sm font-medium transition-colors ${
                   activeCategory === cat
-                    ? 'bg-amber-400 text-zinc-900'
-                    : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
+                    ? 'bg-orange-400 text-charcoal-900'
+                    : 'bg-charcoal-100 text-charcoal-600 hover:bg-charcoal-200'
                 }`}
               >
                 {cat}
@@ -114,7 +114,7 @@ export default function ProjectsPage() {
 
           {isLoading ? (
             <div className="flex justify-center py-20">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-200 border-t-amber-400" />
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-charcoal-200 border-t-orange-400" />
             </div>
           ) : (
             <motion.div
@@ -127,21 +127,21 @@ export default function ProjectsPage() {
                 <motion.article
                   key={project.id}
                   variants={shouldReduceMotion ? {} : slideUp}
-                  className="group overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                  className="group overflow-hidden rounded-lg border border-charcoal-200 bg-white shadow-sm transition-shadow hover:shadow-md"
                 >
-                  <div className="aspect-video bg-zinc-100" />
+                  <div className="aspect-video bg-charcoal-100" />
                   <div className="p-5">
                     <div className="flex items-center justify-between">
                       <Badge>{project.category}</Badge>
-                      <span className="text-xs text-zinc-400">{project.year}</span>
+                      <span className="text-xs text-charcoal-400">{project.year}</span>
                     </div>
-                    <h2 className="font-heading mt-3 text-lg font-semibold text-zinc-900">
+                    <h2 className="font-heading mt-3 text-lg font-semibold text-charcoal-900">
                       {project.title}
                     </h2>
-                    <p className="mt-2 text-sm leading-relaxed text-zinc-500 line-clamp-2">
+                    <p className="mt-2 text-sm leading-relaxed text-charcoal-500 line-clamp-2">
                       {project.description}
                     </p>
-                    <p className="mt-3 text-xs text-zinc-400">{project.location}</p>
+                    <p className="mt-3 text-xs text-charcoal-400">{project.location}</p>
                   </div>
                 </motion.article>
               ))}

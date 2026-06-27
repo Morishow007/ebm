@@ -63,7 +63,7 @@ export default function ContactPage() {
         path="/contato"
       />
 
-      <section className="bg-black py-20">
+      <section className="bg-charcoal-900 py-20">
         <Container>
           <motion.div
             variants={shouldReduceMotion ? {} : fadeIn}
@@ -71,7 +71,7 @@ export default function ContactPage() {
             animate="visible"
           >
             <h1 className="font-heading text-4xl font-bold text-white">Contato</h1>
-            <p className="mt-4 max-w-lg text-zinc-400">
+            <p className="mt-4 max-w-lg text-charcoal-400">
               Preencha o formulário e retornamos uma proposta personalizada.
             </p>
           </motion.div>
@@ -88,19 +88,19 @@ export default function ContactPage() {
               animate="visible"
               className="space-y-6"
             >
-              <h2 className="font-heading text-xl font-bold text-zinc-900">
+              <h2 className="font-heading text-xl font-bold text-charcoal-900">
                 Informações de contato
               </h2>
               {contactDetails.map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-start gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-amber-50 text-amber-500">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-orange-50 text-orange-500">
                     <Icon size={18} />
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">
+                    <p className="text-xs font-medium uppercase tracking-wide text-charcoal-400">
                       {label}
                     </p>
-                    <p className="mt-0.5 text-sm text-zinc-700">{value}</p>
+                    <p className="mt-0.5 text-sm text-charcoal-700">{value}</p>
                   </div>
                 </div>
               ))}
@@ -214,7 +214,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-sm font-medium text-zinc-700">{label}</label>
+      <label className="mb-1.5 block text-sm font-medium text-charcoal-700">{label}</label>
       {children}
       {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
     </div>
@@ -222,9 +222,9 @@ function Field({
 }
 
 function inputClass(hasError: boolean) {
-  return `w-full rounded border px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 outline-none transition-colors focus:ring-2 focus:ring-amber-400/50 ${
+  return `w-full rounded border px-3 py-2 text-sm text-charcoal-900 placeholder-charcoal-400 outline-none transition-colors focus:ring-2 focus:ring-orange-400/50 ${
     hasError
       ? 'border-red-400 bg-red-50 focus:border-red-400'
-      : 'border-zinc-300 bg-white focus:border-amber-400'
+      : 'border-charcoal-300 bg-white focus:border-orange-400'
   }`
 }

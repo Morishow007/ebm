@@ -28,7 +28,7 @@ export function GoogleRating({ theme = 'dark', className }: GoogleRatingProps) {
         'group inline-flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors',
         isDark
           ? 'border-white/10 bg-white/5 hover:bg-white/10'
-          : 'border-zinc-200 bg-white hover:border-zinc-300 shadow-sm',
+          : 'border-charcoal-200 bg-white hover:border-charcoal-300 shadow-sm',
         className
       )}
     >
@@ -63,7 +63,7 @@ export function GoogleRating({ theme = 'dark', className }: GoogleRatingProps) {
                 key={i}
                 size={13}
                 className={cn(
-                  filled || half ? 'text-amber-400' : isDark ? 'text-zinc-700' : 'text-zinc-300'
+                  filled || half ? 'text-orange-400' : isDark ? 'text-charcoal-700' : 'text-charcoal-300'
                 )}
                 fill={filled ? 'currentColor' : half ? 'url(#half)' : 'none'}
               />
@@ -72,7 +72,7 @@ export function GoogleRating({ theme = 'dark', className }: GoogleRatingProps) {
           <span
             className={cn(
               'ml-1.5 text-sm font-bold',
-              isDark ? 'text-white' : 'text-zinc-900'
+              isDark ? 'text-white' : 'text-charcoal-900'
             )}
           >
             {BUSINESS.rating.toFixed(1)}
@@ -80,7 +80,7 @@ export function GoogleRating({ theme = 'dark', className }: GoogleRatingProps) {
         </div>
 
         {/* Label */}
-        <span className={cn('text-xs', isDark ? 'text-zinc-500' : 'text-zinc-500')}>
+        <span className={cn('text-xs', isDark ? 'text-charcoal-500' : 'text-charcoal-500')}>
           {BUSINESS.ratingCount} avaliações · Google
         </span>
       </div>

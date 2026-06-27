@@ -30,7 +30,7 @@ export default function ServicesPage() {
         path="/servicos"
       />
 
-      <section className="bg-black py-20">
+      <section className="bg-charcoal-900 py-20">
         <Container>
           <motion.div
             variants={shouldReduceMotion ? {} : fadeIn}
@@ -38,7 +38,7 @@ export default function ServicesPage() {
             animate="visible"
           >
             <h1 className="font-heading text-4xl font-bold text-white">Serviços</h1>
-            <p className="mt-4 max-w-lg text-zinc-400">
+            <p className="mt-4 max-w-lg text-charcoal-400">
               Soluções completas de engenharia estrutural — do dimensionamento à entrega do projeto executivo.
             </p>
           </motion.div>
@@ -49,7 +49,7 @@ export default function ServicesPage() {
         <Container>
           {isLoading ? (
             <div className="flex justify-center py-20">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-200 border-t-amber-400" />
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-charcoal-200 border-t-orange-400" />
             </div>
           ) : (
             <motion.div
@@ -64,22 +64,22 @@ export default function ServicesPage() {
                   variants={shouldReduceMotion ? {} : slideUp}
                   className={`rounded-lg border p-8 ${
                     service.highlighted
-                      ? 'border-amber-200 bg-amber-50'
-                      : 'border-zinc-200 bg-white'
+                      ? 'border-orange-200 bg-orange-50'
+                      : 'border-charcoal-200 bg-white'
                   }`}
                 >
-                  <h2 className="font-heading text-2xl font-bold text-zinc-900">
+                  <h2 className="font-heading text-2xl font-bold text-charcoal-900">
                     {service.title}
                   </h2>
-                  <p className="mt-3 text-zinc-600">{service.description}</p>
+                  <p className="mt-3 text-charcoal-600">{service.description}</p>
                   <ul className="mt-6 space-y-2">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-2">
                         <CheckCircle
                           size={16}
-                          className="mt-0.5 shrink-0 text-amber-500"
+                          className="mt-0.5 shrink-0 text-orange-500"
                         />
-                        <span className="text-sm text-zinc-600">{feature}</span>
+                        <span className="text-sm text-charcoal-600">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -88,17 +88,17 @@ export default function ServicesPage() {
             </motion.div>
           )}
 
-          <div className="mt-16 rounded-lg bg-zinc-950 p-10 text-center">
+          <div className="mt-16 rounded-lg bg-charcoal-900 p-10 text-center">
             <h2 className="font-heading text-2xl font-bold text-white">
               Precisa de um serviço específico?
             </h2>
-            <p className="mt-3 text-zinc-400">
+            <p className="mt-3 text-charcoal-400">
               Fale com a nossa equipe e encontramos a solução ideal para o seu projeto.
             </p>
             <div className="mt-6">
               <Link
                 to="/contato"
-                className="inline-flex h-12 items-center rounded bg-amber-400 px-7 text-base font-semibold text-zinc-900 transition-colors hover:bg-amber-300"
+                className="inline-flex h-12 items-center rounded bg-orange-400 px-7 text-base font-semibold text-charcoal-900 transition-colors hover:bg-orange-300"
               >
                 Entrar em contato
               </Link>

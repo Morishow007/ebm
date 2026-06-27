@@ -9,7 +9,7 @@ import { PrivateRoute } from './guards/PrivateRoute'
 function PageSkeleton() {
   return (
     <div className="flex min-h-[60vh] items-center justify-center">
-      <div className="h-8 w-8 animate-spin rounded-full border-4 border-zinc-200 border-t-amber-400" />
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-charcoal-200 border-t-orange-400" />
     </div>
   )
 }

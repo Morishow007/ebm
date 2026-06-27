@@ -57,7 +57,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-white/8 bg-black text-zinc-400">
+    <footer className="border-t border-white/8 bg-charcoal-900 text-charcoal-400">
       <Container className="py-14">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
@@ -65,7 +65,7 @@ export function Footer() {
             <Link to="/" className="inline-flex items-center">
               <img src={logotipo} alt="EBM Engenharia" className="h-8 w-auto brightness-0 invert" />
             </Link>
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-zinc-500">
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-charcoal-500">
               Engenharia estrutural, regularização imobiliária e segurança do trabalho com
               responsabilidade técnica e comprometimento em cada projeto.
             </p>
@@ -78,15 +78,15 @@ export function Footer() {
                     {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     className={`group flex items-center gap-2.5 text-sm transition-colors ${
                       highlight
-                        ? 'text-amber-400 hover:text-amber-300'
-                        : 'text-zinc-500 hover:text-zinc-200'
+                        ? 'text-orange-400 hover:text-orange-300'
+                        : 'text-charcoal-500 hover:text-charcoal-200'
                     }`}
                   >
                     <span
                       className={`flex h-7 w-7 shrink-0 items-center justify-center rounded border transition-colors ${
                         highlight
-                          ? 'border-amber-400/30 bg-amber-400/10 text-amber-400 group-hover:bg-amber-400/20'
-                          : 'border-white/10 bg-white/5 text-zinc-400 group-hover:border-white/20 group-hover:text-zinc-200'
+                          ? 'border-orange-400/30 bg-orange-400/10 text-orange-400 group-hover:bg-orange-400/20'
+                          : 'border-white/10 bg-white/5 text-charcoal-400 group-hover:border-white/20 group-hover:text-charcoal-200'
                       }`}
                     >
                       <Icon size={14} />
@@ -100,7 +100,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-300">
+            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-charcoal-300">
               Serviços
             </h3>
             <ul className="space-y-2">
@@ -108,7 +108,7 @@ export function Footer() {
                 <li key={service}>
                   <Link
                     to="/servicos"
-                    className="text-sm text-zinc-500 transition-colors hover:text-white"
+                    className="text-sm text-charcoal-500 transition-colors hover:text-white"
                   >
                     {service}
                   </Link>
@@ -119,7 +119,7 @@ export function Footer() {
 
           {/* Quick links */}
           <div>
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-300">
+            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-charcoal-300">
               Navegação
             </h3>
             <ul className="space-y-2">
@@ -127,7 +127,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     to={link.href}
-                    className="text-sm text-zinc-500 transition-colors hover:text-white"
+                    className="text-sm text-charcoal-500 transition-colors hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -137,7 +137,7 @@ export function Footer() {
             <div className="mt-8">
               <Link
                 to="/contato"
-                className="inline-flex h-10 items-center rounded bg-amber-400 px-5 text-sm font-semibold text-black transition-colors hover:bg-amber-300"
+                className="inline-flex h-10 items-center rounded bg-orange-400 px-5 text-sm font-semibold text-black transition-colors hover:bg-orange-300"
               >
                 Solicitar Orçamento
               </Link>
@@ -145,7 +145,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-zinc-700">
+        <div className="mt-12 border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-charcoal-700">
           <p>© {currentYear} EBM Engenharia. Todos os direitos reservados.</p>
           <p>Engenheiro Eduardo Brignol Moreira · CREA RS-242316 · CNPJ {BUSINESS.cnpj}</p>
         </div>

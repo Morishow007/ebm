@@ -1,50 +1,64 @@
 @theme {
-  /* Identidade visual: preto · cinza · branco · âmbar */
+  /* ── Paleta neutra (charcoal) ──────────────────────────────── */
+  --color-charcoal-50:  #F8F9FA;
+  --color-charcoal-100: #E8EAED;
+  --color-charcoal-200: #CFD1D4;
+  --color-charcoal-300: #B8BCC1;
+  --color-charcoal-400: #A5A9AE;
+  --color-charcoal-500: #848890;
+  --color-charcoal-600: #5F6266;
+  --color-charcoal-700: #3D4044;
+  --color-charcoal-800: #2B2E31;
+  --color-charcoal-900: #181B1E;
 
-  /* Fundos escuros */
-  --color-bg-darkest: #000000;
-  --color-bg-dark: #0a0a0a;
-  --color-bg-dark-secondary: #141414;
-  --color-bg-dark-tertiary: #1f1f1f;
+  /* ── Laranja técnico (accent) — override do orange do Tailwind ─ */
+  --color-orange-50:  #FFF3E6;
+  --color-orange-100: #FFE4C4;
+  --color-orange-200: #FFC994;
+  --color-orange-300: #FFAA5C;
+  --color-orange-400: #FF8822;
+  --color-orange-500: #FF6600;
+  --color-orange-600: #E55A00;
+  --color-orange-700: #C24D00;
+  --color-orange-800: #9A3D00;
+  --color-orange-900: #7A3000;
 
-  /* Superfícies claras */
-  --color-surface-white: #ffffff;
-  --color-surface-50: #fafafa;
-  --color-surface-100: #f5f5f5;
-  --color-surface-200: #e5e5e5;
-  --color-surface-300: #d4d4d4;
+  /* ── Aliases semânticos ────────────────────────────────────────── */
+  --color-bg-darkest:          #181B1E;
+  --color-bg-dark:             #181B1E;
+  --color-bg-dark-secondary:   #2B2E31;
+  --color-bg-dark-tertiary:    #3D4044;
+  --color-surface-white:       #ffffff;
+  --color-surface-50:          #F8F9FA;
+  --color-surface-100:         #E8EAED;
+  --color-surface-200:         #CFD1D4;
+  --color-surface-300:         #B8BCC1;
+  --color-text-primary:        #181B1E;
+  --color-text-secondary:      #5F6266;
+  --color-text-muted:          #A5A9AE;
+  --color-text-inverse:        #F8F9FA;
+  --color-text-inverse-muted:  #A5A9AE;
+  --color-border-dark:         #3D4044;
+  --color-border-light:        #CFD1D4;
+  --color-accent:              #FF6600;
+  --color-accent-hover:        #FF8822;
+  --color-accent-dark:         #E55A00;
+  --color-accent-bg:           #FFF3E6;
 
-  /* Texto */
-  --color-text-primary: #0a0a0a;
-  --color-text-secondary: #525252;
-  --color-text-muted: #a1a1aa;
-  --color-text-inverse: #fafafa;
-  --color-text-inverse-muted: #a1a1aa;
-
-  /* Bordas */
-  --color-border-dark: #27272a;
-  --color-border-light: #e4e4e7;
-
-  /* Accent — âmbar (mantido) */
-  --color-accent: #f59e0b;
-  --color-accent-hover: #fbbf24;
-  --color-accent-dark: #d97706;
-  --color-accent-bg: #fffbeb;
-
-  /* Tipografia */
-  --font-family-sans: 'Inter', system-ui, sans-serif;
+  /* ── Tipografia ────────────────────────────────────────────────── */
+  --font-family-sans:    'Inter', system-ui, sans-serif;
   --font-family-heading: 'Outfit', system-ui, sans-serif;
 
-  /* Espaçamento — base 4px */
+  /* ── Espaçamento ───────────────────────────────────────────────── */
   --spacing-base: 4px;
 
-  /* Border radius */
+  /* ── Border radius ─────────────────────────────────────────────── */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
 
-  /* Sombras */
-  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
+  /* ── Sombras ───────────────────────────────────────────────────── */
+  --shadow-card:     0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
   --shadow-elevated: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-modal:    0 20px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }

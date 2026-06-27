@@ -9,9 +9,9 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const variantClasses: Record<BadgeVariant, string> = {
-  default: 'bg-zinc-100 text-zinc-700',
-  accent: 'bg-amber-100 text-amber-800',
-  outline: 'border border-zinc-300 text-zinc-600',
+  default: 'bg-charcoal-100 text-charcoal-700',
+  accent: 'bg-orange-100 text-orange-800',
+  outline: 'border border-charcoal-300 text-charcoal-600',
   success: 'bg-green-100 text-green-800',
 }
 

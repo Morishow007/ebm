@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { MessageCircle, RotateCcw, X } from 'lucide-react'
+import { HardHat, Headphones, RotateCcw, X } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
-import logotipo from '@/assets/images/logotipo.png'
 import { cn } from '@/lib/utils'
 
 import { chatNodes, type ChatOption } from './chatFlow'
@@ -108,9 +107,9 @@ export function ChatBot() {
             {/* Header */}
             <div className="flex items-center justify-between bg-charcoal-900 px-4 py-3">
               <div className="flex items-center gap-3">
-                <div className="relative rounded bg-white px-1.5 py-0.5">
-                  <img src={logotipo} alt="EBM Engenharia" className="h-6 w-auto" />
-                  <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-black bg-green-400" />
+                <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange-500">
+                  <HardHat size={18} className="text-white" />
+                  <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-charcoal-900 bg-green-400" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-white">EBM Engenharia</p>
@@ -150,8 +149,8 @@ export function ChatBot() {
                   className={cn('flex', msg.from === 'user' ? 'justify-end' : 'justify-start')}
                 >
                   {msg.from === 'bot' && (
-                    <div className="mr-2 flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded bg-white border border-charcoal-200 p-0.5">
-                      <img src={logotipo} alt="" className="h-full w-auto object-contain" />
+                    <div className="mr-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-orange-500">
+                      <HardHat size={14} className="text-white" />
                     </div>
                   )}
                   <div
@@ -239,7 +238,7 @@ export function ChatBot() {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.15 }}
             >
-              <MessageCircle size={22} />
+              <Headphones size={22} />
             </motion.div>
           )}
         </AnimatePresence>

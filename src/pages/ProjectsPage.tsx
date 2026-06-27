@@ -10,15 +10,6 @@ import { fadeIn, slideUp, staggerChildren } from '@/lib/motion'
 import { pageSEO } from '@/lib/seo'
 import type { Project, ProjectCategory } from '@/types/models'
 
-const categories: Array<ProjectCategory | 'Todos'> = [
-  'Todos',
-  'Residencial',
-  'Comercial',
-  'Industrial',
-  'Infraestrutura',
-  'Reforma',
-]
-
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([])
   const [activeCategory, setActiveCategory] = useState<ProjectCategory | 'Todos'>('Todos')
@@ -30,6 +21,11 @@ export default function ProjectsPage() {
       .then(setProjects)
       .finally(() => setIsLoading(false))
   }, [])
+
+  const categories: Array<ProjectCategory | 'Todos'> = [
+    'Todos',
+    ...Array.from(new Set(projects.map((p) => p.category))),
+  ]
 
   const filtered =
     activeCategory === 'Todos'
@@ -54,8 +50,12 @@ export default function ProjectsPage() {
             animate="visible"
           >
             <h1 className="font-heading text-4xl font-bold text-white">Projetos</h1>
-            <p className="mt-4 max-w-lg text-charcoal-400">
-              Uma seleção de obras e projetos entregues com precisão técnica e dentro do prazo.
+            <p className="mt-4 max-w-xl text-charcoal-400">
+              Obras reais, documentadas com precisão técnica — e alguns disponíveis para{' '}
+              <span className="font-semibold text-orange-400">
+                exploração em modelagem 3D interativa
+              </span>{' '}
+              pelo celular ou computador, sem instalar nada.
             </p>
           </motion.div>
         </Container>
@@ -121,27 +121,53 @@ export default function ProjectsPage() {
               variants={shouldReduceMotion ? {} : staggerChildren}
               initial="hidden"
               animate="visible"
-              className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+              className="grid items-start gap-8 sm:grid-cols-2 lg:grid-cols-3"
             >
               {filtered.map((project) => (
                 <motion.article
                   key={project.id}
                   variants={shouldReduceMotion ? {} : slideUp}
-                  className="group overflow-hidden rounded-lg border border-charcoal-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.02, y: -4 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                  className="group overflow-hidden rounded-lg border border-charcoal-200 bg-white shadow-sm hover:border-orange-400 hover:shadow-lg"
                 >
-                  <div className="aspect-video bg-charcoal-100" />
+                  {project.imageUrl ? (
+                    <img
+                      src={project.imageUrl}
+                      alt={project.title}
+                      className="aspect-video w-full object-cover"
+                    />
+                  ) : (
+                    <div className="aspect-video bg-charcoal-100" />
+                  )}
                   <div className="p-5">
                     <div className="flex items-center justify-between">
-                      <Badge>{project.category}</Badge>
+                      <div className="flex items-center gap-2">
+                        <Badge>{project.category}</Badge>
+                        {project.subtitle && (
+                          <span className="text-xs text-charcoal-500">{project.subtitle}</span>
+                        )}
+                      </div>
                       <span className="text-xs text-charcoal-400">{project.year}</span>
                     </div>
                     <h2 className="font-heading mt-3 text-lg font-semibold text-charcoal-900">
                       {project.title}
                     </h2>
-                    <p className="mt-2 text-sm leading-relaxed text-charcoal-500 line-clamp-2">
+                    <p className="mt-2 text-sm leading-relaxed text-charcoal-500">
                       {project.description}
                     </p>
-                    <p className="mt-3 text-xs text-charcoal-400">{project.location}</p>
+                    <div className="mt-3 flex items-center justify-between">
+                      <p className="text-xs text-charcoal-400">{project.location}</p>
+                      {project.sketchfabSlug && (
+                        <Link
+                          to={`/projetos/3d/${project.sketchfabSlug}`}
+                          className="flex items-center gap-1 rounded bg-charcoal-900 px-2.5 py-1 text-xs font-medium text-orange-400 transition-colors hover:bg-charcoal-800"
+                        >
+                          <Box size={11} />
+                          Ver em 3D
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </motion.article>
               ))}

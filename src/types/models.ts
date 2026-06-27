@@ -1,6 +1,7 @@
 export interface Project {
   id: string
   title: string
+  subtitle?: string
   description: string
   category: ProjectCategory
   imageUrl: string
@@ -8,6 +9,7 @@ export interface Project {
   location: string
   tags: string[]
   featured?: boolean
+  sketchfabSlug?: string
 }
 
 export type ProjectCategory =

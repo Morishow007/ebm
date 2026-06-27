@@ -4,42 +4,82 @@
 
 import type { Project, Service } from '@/types/models'
 
+import parqueDoLagoImg from '@/assets/images/parque-do-lago.png'
+import galpaoComercialImg from '@/assets/images/galpao-comercial.png'
+import projetoHidroImg from '@/assets/images/projeto-hidro.png'
+import projetoEletricoImg from '@/assets/images/projeto-eletrico.png'
+
 const mockProjects: Project[] = [
   {
     id: '1',
-    title: 'Edifício Residencial Torres do Parque',
+    title: 'Sobrado Residencial Ipanema',
+    subtitle: 'Projeto Arquitetônico',
     description:
-      'Projeto estrutural completo de edifício residencial de 20 andares em concreto armado, com análise dinâmica e dimensionamento de fundações.',
+      'Projeto arquitetônico completo de residência unifamiliar com 2 pavimentos, 2 dormitórios e 90 m² de área construída, contemplando layout funcional, compatibilização dos ambientes e atendimento às normas técnicas.',
     category: 'Residencial',
-    imageUrl: '/assets/images/project-1.jpg',
+    imageUrl: '',
     year: 2024,
-    location: 'São Paulo, SP',
-    tags: ['Concreto Armado', 'Fundações', 'Análise Dinâmica'],
+    location: 'Rio Grande, RS',
+    tags: ['Projeto Arquitetônico', '2 Pavimentos', '90 m²'],
     featured: true,
   },
   {
     id: '2',
-    title: 'Galpão Industrial Metálico',
+    title: 'Revenda de Motos',
+    subtitle: 'Projeto Arquitetônico',
     description:
-      'Estrutura metálica para galpão industrial de 5.000m², incluindo mezanino e sistema de coberturas especiais.',
-    category: 'Industrial',
-    imageUrl: '/assets/images/project-2.jpg',
-    year: 2024,
-    location: 'Campinas, SP',
-    tags: ['Estrutura Metálica', 'Galpão', 'Mezanino'],
+      'Projeto arquitetônico de galpão pré-moldado em concreto destinado à comercialização de motocicletas, contemplando área de exposição, atendimento ao cliente, setor administrativo e oficina.',
+    category: 'Comercial',
+    imageUrl: galpaoComercialImg,
+    year: 2025,
+    location: 'Rio Grande, RS',
+    tags: ['Projeto Arquitetônico', 'Galpão Pré-moldado', 'Motocicletas'],
     featured: true,
+    sketchfabSlug: 'galpao-comercial',
   },
   {
     id: '3',
-    title: 'Centro Comercial Plaza',
+    title: 'Projeto Elétrico – Sobrado Residencial Ipanema',
+    subtitle: 'Projeto Elétrico',
     description:
-      'Laudo de inspeção predial e projeto de reforço estrutural de shopping center com 15 anos de operação.',
-    category: 'Comercial',
-    imageUrl: '/assets/images/project-3.jpg',
-    year: 2023,
-    location: 'Rio de Janeiro, RJ',
-    tags: ['Inspeção', 'Reforço Estrutural', 'Patologia'],
+      'Projeto elétrico de residência unifamiliar com 2 pavimentos, 2 dormitórios e 90 m² de área construída, desenvolvido em conformidade com a NBR 5410 e demais requisitos normativos aplicáveis, contemplando o dimensionamento de circuitos, proteção contra sobrecorrentes, aterramento, distribuição de cargas e especificação dos pontos elétricos.',
+    category: 'Residencial',
+    imageUrl: '',
+    year: 2024,
+    location: 'Rio Grande, RS',
+    tags: ['Projeto Elétrico', 'NBR 5410', '90 m²'],
     featured: false,
+    imageUrl: projetoEletricoImg,
+  },
+  {
+    id: '4',
+    title: 'Projeto Hidrossanitário – Sobrado Residencial Ipanema',
+    subtitle: 'Projeto Hidrossanitário',
+    description:
+      'Projeto hidrossanitário elaborado em conformidade com as normas ABNT NBR 5626 (Sistemas Prediais de Água Fria e Água Quente), ABNT NBR 8160 (Sistemas Prediais de Esgoto Sanitário), ABNT NBR 10844 (Instalações Prediais de Águas Pluviais) e demais requisitos técnicos aplicáveis.',
+    category: 'Residencial',
+    imageUrl: '',
+    year: 2024,
+    location: 'Rio Grande, RS',
+    tags: ['Projeto Hidrossanitário', 'ABNT NBR 5626', 'NBR 8160'],
+    featured: false,
+    sketchfabSlug: 'hidrossanitario-sobrado',
+    imageUrl: projetoHidroImg,
+  },
+  {
+    id: '5',
+    title: 'Projeto Arquitetônico – Residência Térrea Ipanema',
+    subtitle: 'Projeto Arquitetônico',
+    description:
+      'Projeto arquitetônico de residência unifamiliar térrea com 2 dormitórios, 2 banheiros e 75 m² de área construída, contemplando ambientes integrados, aproveitamento eficiente dos espaços, iluminação e ventilação natural, além da documentação técnica necessária para aprovação e execução da obra.',
+    category: 'Residencial',
+    imageUrl: '',
+    year: 2024,
+    location: 'Rio Grande, RS',
+    tags: ['Projeto Arquitetônico', 'Térrea', '75 m²'],
+    featured: true,
+    sketchfabSlug: 'residencial-terreo',
+    imageUrl: parqueDoLagoImg,
   },
 ]
 
@@ -132,7 +172,12 @@ const mockServices: Service[] = [
 
 export async function getProjects(): Promise<Project[]> {
   // Future: return fetch(`${import.meta.env.VITE_CMS_API_URL}/projects`).then(r => r.json())
-  return Promise.resolve(mockProjects)
+  const sorted = [...mockProjects].sort((a, b) => {
+    if (a.sketchfabSlug && !b.sketchfabSlug) return -1
+    if (!a.sketchfabSlug && b.sketchfabSlug) return 1
+    return 0
+  })
+  return Promise.resolve(sorted)
 }
 
 export async function getServices(): Promise<Service[]> {

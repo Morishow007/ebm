@@ -37,6 +37,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: lazy(HomePage) },
       { path: 'projetos', element: lazy(ProjectsPage) },
+      { path: 'projetos/3d/:slug', element: lazy(ModelShowcasePage) },
       { path: 'projetos/3d', element: lazy(ModelShowcasePage) },
       { path: 'servicos', element: lazy(ServicesPage) },
       { path: 'contato', element: lazy(ContactPage) },

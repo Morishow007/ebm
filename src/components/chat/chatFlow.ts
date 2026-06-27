@@ -142,7 +142,7 @@ export const chatNodes: Record<string, ChatNode> = {
   'menu-projects': {
     id: 'menu-projects',
     message:
-      'Temos um portfólio com projetos residenciais, comerciais e industriais em São Paulo e região. Você pode conferir todos os projetos no nosso site!',
+      'Temos um portfólio com projetos residenciais e comerciais em Rio Grande, Pelotas e sul do RS — alguns com visualização 3D interativa. Confira no nosso site!',
     options: [
       { label: '🗂️ Ver portfólio', next: 'cta-projects', link: '/projetos' },
       { label: '💰 Solicitar orçamento', next: 'menu-quote' },

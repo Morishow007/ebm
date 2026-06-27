@@ -44,12 +44,11 @@ const mockProjects: Project[] = [
     description:
       'Projeto elétrico de residência unifamiliar com 2 pavimentos, 2 dormitórios e 90 m² de área construída, desenvolvido em conformidade com a NBR 5410 e demais requisitos normativos aplicáveis, contemplando o dimensionamento de circuitos, proteção contra sobrecorrentes, aterramento, distribuição de cargas e especificação dos pontos elétricos.',
     category: 'Residencial',
-    imageUrl: '',
+    imageUrl: projetoEletricoImg,
     year: 2024,
     location: 'Rio Grande, RS',
     tags: ['Projeto Elétrico', 'NBR 5410', '90 m²'],
     featured: false,
-    imageUrl: projetoEletricoImg,
   },
   {
     id: '4',
@@ -58,13 +57,12 @@ const mockProjects: Project[] = [
     description:
       'Projeto hidrossanitário elaborado em conformidade com as normas ABNT NBR 5626 (Sistemas Prediais de Água Fria e Água Quente), ABNT NBR 8160 (Sistemas Prediais de Esgoto Sanitário), ABNT NBR 10844 (Instalações Prediais de Águas Pluviais) e demais requisitos técnicos aplicáveis.',
     category: 'Residencial',
-    imageUrl: '',
+    imageUrl: projetoHidroImg,
     year: 2024,
     location: 'Rio Grande, RS',
     tags: ['Projeto Hidrossanitário', 'ABNT NBR 5626', 'NBR 8160'],
     featured: false,
     sketchfabSlug: 'hidrossanitario-sobrado',
-    imageUrl: projetoHidroImg,
   },
   {
     id: '5',
@@ -73,13 +71,12 @@ const mockProjects: Project[] = [
     description:
       'Projeto arquitetônico de residência unifamiliar térrea com 2 dormitórios, 2 banheiros e 75 m² de área construída, contemplando ambientes integrados, aproveitamento eficiente dos espaços, iluminação e ventilação natural, além da documentação técnica necessária para aprovação e execução da obra.',
     category: 'Residencial',
-    imageUrl: '',
+    imageUrl: parqueDoLagoImg,
     year: 2024,
     location: 'Rio Grande, RS',
     tags: ['Projeto Arquitetônico', 'Térrea', '75 m²'],
     featured: true,
     sketchfabSlug: 'residencial-terreo',
-    imageUrl: parqueDoLagoImg,
   },
 ]
 
